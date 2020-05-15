@@ -1,18 +1,17 @@
 package graphics.shapes.ui;
 
-import graphics.shapes.SCircle;
-import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.SText;
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.JFrame;
+
+import attributes.ColorAttributes;
+import attributes.SelectionAttributes;
+import shapes.SCollection;
+import shapes.SRectangle;
 
 public class Editor extends JFrame
 {

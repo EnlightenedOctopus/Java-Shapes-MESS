@@ -1,4 +1,4 @@
-package shape;
+package shapes;
 
 import java.awt.Point;
 import java.awt.Rectangle;
