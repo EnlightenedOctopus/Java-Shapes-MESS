@@ -1,4 +1,4 @@
-package attributes;
+package graphics.shapes.attributes;
 
 import java.awt.Color;
 import java.awt.Font;

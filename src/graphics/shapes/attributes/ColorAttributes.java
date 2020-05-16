@@ -1,4 +1,4 @@
-package attributes;
+package graphics.shapes.attributes;
 
 public class ColorAttributes extends Attributes{
 	

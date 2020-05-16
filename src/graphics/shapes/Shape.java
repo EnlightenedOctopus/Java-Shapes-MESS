@@ -1,10 +1,10 @@
-package shapes;
+package graphics.shapes;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
 
-import attributes.Attributes;
+import graphics.shapes.attributes.Attributes;
 import visitor.ShapeVisitor;
 
 abstract public class Shape {

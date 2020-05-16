@@ -8,10 +8,10 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
-import attributes.ColorAttributes;
-import attributes.SelectionAttributes;
-import shapes.SCollection;
-import shapes.SRectangle;
+import graphics.shapes.SCollection;
+import graphics.shapes.SRectangle;
+import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 public class Editor extends JFrame
 {

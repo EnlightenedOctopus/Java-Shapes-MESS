@@ -1,12 +1,12 @@
-package shapes;
+package graphics.shapes;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import visitor.ShapeVisitor;
 
-public class SCircle extends Shape{
-	private int radius;
+public class SText extends Shape{
+	private String text;
 	private Point loc;
 	
 	@Override
@@ -32,9 +32,9 @@ public class SCircle extends Shape{
 		return null;
 	}
 
+	@Override
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
