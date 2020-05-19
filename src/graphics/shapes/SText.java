@@ -3,7 +3,6 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import visitor.ShapeVisitor;
 
 public class SText extends Shape{
 	private String text;

@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.util.Collection;
 import java.util.Iterator;
 
-import visitor.ShapeVisitor;
 
 public class SCollection extends Shape {
 	private Collection<Shape> shapes;

@@ -3,10 +3,12 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import visitor.ShapeVisitor;
-
 public class SRectangle extends Shape{
 	private Rectangle rect;
+	
+	public SRectangle(Rectangle rect) {
+		this.rect = rect;
+	}
 	
 	public Rectangle getRect() {
 		return this.rect;

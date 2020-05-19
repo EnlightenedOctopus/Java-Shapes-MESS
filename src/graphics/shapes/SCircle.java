@@ -3,8 +3,6 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import visitor.ShapeVisitor;
-
 public class SCircle extends Shape{
 	private int radius;
 	private Point loc;
