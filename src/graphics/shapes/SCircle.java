@@ -7,6 +7,13 @@ public class SCircle extends Shape{
 	private int radius;
 	private Point loc;
 	
+	public int getRadius() {
+		return this.radius;
+	}
+	public void setRadius(int i) {
+		this.radius=i;
+	}
+	
 	@Override
 	public Point getLoc() {
 		return this.loc;
@@ -32,7 +39,7 @@ public class SCircle extends Shape{
 
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.visitCircle(this);
 	}
 
 }

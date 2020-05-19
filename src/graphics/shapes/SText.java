@@ -8,6 +8,13 @@ public class SText extends Shape{
 	private String text;
 	private Point loc;
 	
+	public String getText() {
+		return text;
+	}
+	public void setText(String s) {
+		this.text=s;
+	}
+	
 	@Override
 	public Point getLoc() {
 		return this.loc;
@@ -34,6 +41,6 @@ public class SText extends Shape{
 	@Override
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.visitText(this);
 	}
 }
