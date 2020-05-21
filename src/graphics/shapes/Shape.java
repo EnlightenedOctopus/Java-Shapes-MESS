@@ -3,11 +3,12 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
+import java.util.TreeMap;
 
 import graphics.shapes.attributes.Attributes;
 
 abstract public class Shape {
-	private Map<String, Attributes> attributes;
+	private Map<String, Attributes> attributes = new TreeMap<String, Attributes>();
 	
 	public Shape() {
 		this.attributes=new Map<String,Attributes>();
