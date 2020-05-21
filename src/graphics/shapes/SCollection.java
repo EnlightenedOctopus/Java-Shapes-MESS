@@ -9,10 +9,6 @@ import java.util.Iterator;
 public class SCollection extends Shape {
 	private Collection<Shape> shapes;
 	private Point loc;
-	public SCollection() {
-		super();
-	}
-	
 	public Iterator<Shape> iterator() {
 		return null;
 	}

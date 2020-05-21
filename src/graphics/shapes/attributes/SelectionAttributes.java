@@ -3,10 +3,6 @@ package graphics.shapes.attributes;
 public class SelectionAttributes extends Attributes {
 	private boolean selected;
 	
-	public SelectionAttributes() {
-		this.selected=false;
-	}
-	
 	public String getId() {
 		return "selection";
 	}

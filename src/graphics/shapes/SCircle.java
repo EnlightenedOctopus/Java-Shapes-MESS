@@ -8,7 +8,6 @@ public class SCircle extends Shape{
 	private Point loc;
 	
 	public SCircle(Point p, int r) {
-		super();
 		this.loc=p;
 		this.radius=r;
 	}

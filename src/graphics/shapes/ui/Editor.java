@@ -44,8 +44,7 @@ public class Editor extends JFrame
 	private void buildModel()
 	{
 		this.model = new SCollection();
-		SelectionAttributes i = new SelectionAttributes();
-		this.model.addAttributes(i);
+		//this.model.addAttributes(new SelectionAttributes());
 		
 		SRectangle r = new SRectangle(new Point(10,10),20,30);
 		r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
