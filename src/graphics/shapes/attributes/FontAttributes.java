@@ -8,8 +8,7 @@ public class FontAttributes extends Attributes{
 
 	@Override
 	public String getId() {
-
-		return null;
+		return "font";
 	}
 	public Font font() {
 		return null;

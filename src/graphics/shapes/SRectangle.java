@@ -6,6 +6,10 @@ import java.awt.Rectangle;
 public class SRectangle extends Shape{
 	private Rectangle rect;
 	
+	public SRectangle(Point p, int h, int w) {
+		this.rect=new Rectangle(p.x,p.y,h,w);
+	}
+	
 	public SRectangle(Rectangle rect) {
 		this.rect = rect;
 	}
@@ -30,7 +34,7 @@ public class SRectangle extends Shape{
 	}
 
 	@Override
-	public Rectangle getBouds() {
+	public Rectangle getBounds() {
 		return rect.getBounds();
 	}
 

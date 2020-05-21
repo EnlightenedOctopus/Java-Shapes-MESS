@@ -8,6 +8,11 @@ public class SText extends Shape{
 	private String text;
 	private Point loc;
 	
+	public SText(Point p,String s) {
+		this.loc=p;
+		this.text=s;
+	}
+	
 	public String getText() {
 		return text;
 	}
@@ -33,7 +38,7 @@ public class SText extends Shape{
 	}
 
 	@Override
-	public Rectangle getBouds() {
+	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -7,6 +7,12 @@ public class SCircle extends Shape{
 	private int radius;
 	private Point loc;
 	
+	public SCircle(Point p, int r) {
+		this.loc=p;
+		this.radius=r;
+	}
+	
+	
 	public int getRadius() {
 		return this.radius;
 	}
@@ -32,7 +38,7 @@ public class SCircle extends Shape{
 	}
 
 	@Override
-	public Rectangle getBouds() {
+	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}

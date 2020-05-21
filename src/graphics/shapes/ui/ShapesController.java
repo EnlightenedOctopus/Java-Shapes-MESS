@@ -1,5 +1,9 @@
 package graphics.shapes.ui;
 
-public class ShapesController {
+import graphics.ui.Controller;
 
+public class ShapesController extends Controller{
+	public ShapesController() {
+		super();
+	}
 }

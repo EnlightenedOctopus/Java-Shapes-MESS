@@ -8,9 +8,12 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 
+import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
+import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 public class Editor extends JFrame
@@ -41,7 +44,7 @@ public class Editor extends JFrame
 	private void buildModel()
 	{
 		this.model = new SCollection();
-		this.model.addAttributes(new SelectionAttributes());
+		//this.model.addAttributes(new SelectionAttributes());
 		
 		SRectangle r = new SRectangle(new Point(10,10),20,30);
 		r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));

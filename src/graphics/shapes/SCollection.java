@@ -29,7 +29,7 @@ public class SCollection extends Shape {
 		this.loc.translate(x, y);
 	}
 	@Override
-	public Rectangle getBouds() {
+	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}
