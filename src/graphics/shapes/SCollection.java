@@ -2,18 +2,19 @@ package graphics.shapes;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 
 public class SCollection extends Shape {
-	private Collection<Shape> shapes;
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	private Point loc;
 	public Iterator<Shape> iterator() {
-		return null;
+		return this.shapes.iterator();
 	}
 	public void add(Shape shape) {
-		
+		this.shapes.add(shape);
 	}
 	@Override
 	public Point getLoc() {		
