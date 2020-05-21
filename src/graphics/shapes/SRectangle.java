@@ -7,10 +7,12 @@ public class SRectangle extends Shape{
 	private Rectangle rect;
 	
 	public SRectangle(Point p, int h, int w) {
+		super();
 		this.rect=new Rectangle(p.x,p.y,h,w);
 	}
 	
 	public SRectangle(Rectangle rect) {
+		super();
 		this.rect = rect;
 	}
 	

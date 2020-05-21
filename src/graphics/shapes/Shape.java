@@ -9,6 +9,10 @@ import graphics.shapes.attributes.Attributes;
 abstract public class Shape {
 	private Map<String, Attributes> attributes;
 	
+	public Shape() {
+		this.attributes=new Map<String,Attributes>();
+	}
+	
 	public void addAttributes(Attributes attr) {
 		this.attributes.put(attr.getId(), attr);
 	}
