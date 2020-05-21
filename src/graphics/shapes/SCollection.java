@@ -36,7 +36,7 @@ public class SCollection extends Shape {
 	}
 	@Override
 	public void accept(ShapeVisitor visitor) {
-		// TODO Auto-generated method stub
+		visitor.visitCollection(this);
 		
 	}
 }

@@ -51,6 +51,7 @@ public class Editor extends JFrame
 		r.addAttributes(new SelectionAttributes());
 		this.model.add(r);
 		
+		
 		SCircle c = new SCircle(new Point(100,100),10);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
 		c.addAttributes(new SelectionAttributes());
@@ -73,6 +74,7 @@ public class Editor extends JFrame
 		c.addAttributes(new SelectionAttributes());
 		sc.add(c);
 		this.model.add(sc);
+	
 	}
 	
 	public static void main(String[] args)
@@ -80,5 +82,6 @@ public class Editor extends JFrame
 		Editor self = new Editor();
 		self.pack();
 		self.setVisible(true);
+
 	}
 }

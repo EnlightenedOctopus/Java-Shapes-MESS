@@ -39,9 +39,13 @@ public class ShapeDraftman implements ShapeVisitor {
 		
 	}
 	public void visitCollection(SCollection c) {
+		
 		Iterator<Shape> i = c.iterator();
 		while (i.hasNext()) {
-			i.next().accept(this);
+			
+			Shape test = i.next();
+			test.accept(this);
+			System.out.println(test);
 		}
 	}
 }
