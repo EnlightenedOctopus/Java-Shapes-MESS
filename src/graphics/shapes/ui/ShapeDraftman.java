@@ -22,7 +22,15 @@ public class ShapeDraftman implements ShapeVisitor {
 		this.DEFAULTCOLORATTRIBUTES=new ColorAttributes(true, true, Color.black, Color.white);
 	}
 	public void visitRectangle(SRectangle r) {
-		
+		ColorAttributes attri = (ColorAttributes)r.getAttributes("color");
+		if (attri.filled) {
+			g.setColor(attri.filledColor);
+			g.fillRect((int)r.getLoc().getX(), (int)r.getLoc().getY(), r.getRect().width,r.getRect().height);
+		}
+		if (attri.stroked) {
+			g.setColor(attri.strokedColor);
+			g.drawRect((int)r.getLoc().getX(), (int)r.getLoc().getY(), r.getRect().width,r.getRect().height);
+		}
 	}
 	public void visitCircle(SCircle c) {
 		ColorAttributes attri = (ColorAttributes)c.getAttributes("color");
