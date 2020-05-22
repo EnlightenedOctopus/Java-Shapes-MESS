@@ -11,6 +11,7 @@ import graphics.shapes.SText;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.FontAttributes;
 
 public class ShapeDraftman implements ShapeVisitor {
 	public ColorAttributes DEFAULTCOLORATTRIBUTES;
@@ -23,6 +24,7 @@ public class ShapeDraftman implements ShapeVisitor {
 	}
 	public void visitRectangle(SRectangle r) {
 		ColorAttributes attri = (ColorAttributes)r.getAttributes("color");
+		if (attri==null) attri=DEFAULTCOLORATTRIBUTES;
 		if (attri.filled) {
 			g.setColor(attri.filledColor);
 			g.fillRect((int)r.getLoc().getX(), (int)r.getLoc().getY(), r.getRect().width,r.getRect().height);
@@ -34,6 +36,7 @@ public class ShapeDraftman implements ShapeVisitor {
 	}
 	public void visitCircle(SCircle c) {
 		ColorAttributes attri = (ColorAttributes)c.getAttributes("color");
+		if (attri==null) attri=DEFAULTCOLORATTRIBUTES;
 		if (attri.filled) {
 			g.setColor(attri.filledColor);
 			g.fillOval((int)c.getLoc().getX(), (int)c.getLoc().getY(), c.getRadius(), c.getRadius());
@@ -44,7 +47,13 @@ public class ShapeDraftman implements ShapeVisitor {
 		}
 	}
 	public void visitText(SText txt) {
-		
+		ColorAttributes attcolor = (ColorAttributes)txt.getAttributes("color");
+		if (attcolor==null) attcolor=DEFAULTCOLORATTRIBUTES;
+		FontAttributes attfont = (FontAttributes)txt.getAttributes("font");
+		if (attfont==null) attfont= new FontAttributes();
+		g.setColor(attfont.fontColor);
+		g.setFont(attfont.font);
+		g.drawString(txt.getText(), txt.getLoc().x, txt.getLoc().y);
 	}
 	public void visitCollection(SCollection c) {
 		Iterator<Shape> i = c.iterator();

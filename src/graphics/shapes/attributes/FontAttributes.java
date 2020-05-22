@@ -13,6 +13,16 @@ public class FontAttributes extends Attributes{
 	public Font font;
 	public Color fontColor;
 	
+	public FontAttributes() {
+		font= new Font("Arial", Font.PLAIN, 10);
+		fontColor = Color.BLACK;
+	}
+	
+	public FontAttributes(Font f, Color c) {
+		font=f;
+		fontColor=c;
+	}
+	
 	public Rectangle getBounds(String wtf) {
 		return null;
 	}
