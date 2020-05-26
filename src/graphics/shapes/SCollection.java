@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import graphics.shapes.attributes.SelectionAttributes;
+
 
 public class SCollection extends Shape {
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
@@ -27,12 +29,17 @@ public class SCollection extends Shape {
 	}
 	@Override
 	public void translate(int x, int y) {
-		this.loc.translate(x, y);
+		for (Iterator<Shape> i = this.iterator(); i.hasNext();) {
+			i.next().translate(x,y);
+		}
 	}
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		Rectangle rect = new Rectangle();
+		for (Iterator<Shape> i = this.iterator(); i.hasNext();) {
+			rect.union(i.next().getBounds());
+		}
+		return rect;
 	}
 	@Override
 	public void accept(ShapeVisitor visitor) {
