@@ -17,9 +17,9 @@ public class ShapeDraftman implements ShapeVisitor {
 	public ColorAttributes DEFAULTCOLORATTRIBUTES;
 	private Graphics g;
 	
-	public ShapeDraftman(Graphics gr) {
+	public ShapeDraftman(Graphics g) {
 		super();
-		this.g=gr;
+		this.g=g;
 		this.DEFAULTCOLORATTRIBUTES=new ColorAttributes(true, true, Color.black, Color.white);
 	}
 	public void visitRectangle(SRectangle r) {

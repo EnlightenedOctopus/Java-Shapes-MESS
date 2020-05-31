@@ -12,7 +12,7 @@ import graphics.ui.Controller;
 
 public class ShapesController extends Controller{
 	Point mouseLoc;
-    private static boolean shiftDown;
+    private boolean shiftDown;
     private char t;
     private char p;
     private char r;
@@ -22,7 +22,7 @@ public class ShapesController extends Controller{
 		super(model);
 	}
 	
-	public Shape whereIs(float x, float y) {
+	public Shape getTarget(int x, int y) {
 		
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
@@ -73,10 +73,10 @@ public class ShapesController extends Controller{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		super.mousePressed(e);
-		if(this.whereIs(e.getX(), e.getY()) != null) {
-			this.toggleSelectShape(this.whereIs(e.getX(), e.getY()));
+		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
+			this.toggleSelectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
 		}
 		this.mouseLoc=e.getPoint();
 		this.getView().repaint();
@@ -88,14 +88,13 @@ public class ShapesController extends Controller{
 		super.mouseDragged(e);
 		getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
 		this.mouseLoc=e.getPoint();
-		System.out.println(e.getPoint().x-this.mouseLoc.x);
 		this.getView().repaint();
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		super.mouseClicked(e);
-		System.out.println("test");
+		this.mouseLoc=e.getPoint();
 	}
 
     public void keyTyped(KeyEvent evt)

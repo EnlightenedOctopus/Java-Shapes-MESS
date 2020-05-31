@@ -15,6 +15,7 @@ public class ShapesView extends View {
 	}
 	
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		new ShapeDraftman(g).visitCollection((SCollection)this.getModel());
 	}
 	
