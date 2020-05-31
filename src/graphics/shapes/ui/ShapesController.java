@@ -47,7 +47,6 @@ public class ShapesController extends Controller{
 			}
 			else {
 				if(s.getBounds().contains(x,y)) {
-					System.out.println("test");
 					return s;
 				}
 			}

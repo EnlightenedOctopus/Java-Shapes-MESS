@@ -69,7 +69,7 @@ public class ShapeDraftman implements ShapeVisitor {
 		g.setColor(attcolor.filledColor);
 		g.fillRect(txt.getBounds().x, txt.getBounds().y, txt.getBounds().width, txt.getBounds().height);
 		
-		g.setColor(attfont.fontColor);
+		g.setColor(attcolor.strokedColor);
 		g.setFont(attfont.font);
 		g.drawString(txt.getText(), txt.getLoc().x, txt.getLoc().y);
 		SelectionAttributes attriselect = (SelectionAttributes)txt.getAttributes("selection");
