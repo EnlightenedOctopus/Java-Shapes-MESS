@@ -77,6 +77,23 @@ public class ShapeDraftman implements ShapeVisitor {
 		}
 	}
 	public void visitCollection(SCollection c) {
+		SelectionAttributes attri = (SelectionAttributes)c.getAttributes("selection");
+		if (attri!=null && attri.isSelected()) {
+			int xmini=15000;
+			int ymini=15000;
+			int xmaxi=-1;
+			int ymaxi=-1;
+			for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
+				Shape s = i.next();
+				if (s.getBounds().getX()<xmini) xmini=(int)s.getBounds().getX();
+				if (s.getBounds().getY()<ymini) ymini=(int)s.getBounds().getY();
+				if (s.getBounds().getX()+s.getBounds().getWidth()>xmaxi) xmaxi=(int)(s.getBounds().getX()+s.getBounds().getWidth());
+				if (s.getBounds().getY()+s.getBounds().getHeight()>ymaxi) ymaxi=(int)(s.getBounds().getY()+s.getBounds().getHeight());
+			}
+			g.setColor(Color.BLACK);
+			g.drawRect(xmini-DEFAULTSELECTIONSQUARE,ymini-DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
+			g.drawRect(xmaxi-DEFAULTSELECTIONSQUARE-1,ymaxi-DEFAULTSELECTIONSQUARE-1,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
+		}
 		Iterator<Shape> i = c.iterator();
 		while (i.hasNext()) {
 			i.next().accept(this);

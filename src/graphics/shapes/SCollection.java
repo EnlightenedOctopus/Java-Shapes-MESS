@@ -37,7 +37,7 @@ public class SCollection extends Shape {
 	public Rectangle getBounds() {
 		Rectangle rect = new Rectangle();
 		for (Iterator<Shape> i = this.iterator(); i.hasNext();) {
-			rect.union(i.next().getBounds());
+			rect.add(i.next().getBounds());
 		}
 		return rect;
 	}
