@@ -41,7 +41,7 @@ public class SText extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		Rectangle tempo = new Rectangle(this.loc.x,this.loc.y,((FontAttributes)this.getAttributes("font")).getBounds(this.text).width,((FontAttributes)this.getAttributes("font")).getBounds(this.text).height);
+		Rectangle tempo = new Rectangle(this.loc.x,this.loc.y-((FontAttributes)this.getAttributes("font")).getBounds(this.text).height,((FontAttributes)this.getAttributes("font")).getBounds(this.text).width,((FontAttributes)this.getAttributes("font")).getBounds(this.text).height);
 		return tempo;
 	}
 

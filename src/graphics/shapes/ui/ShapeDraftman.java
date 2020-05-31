@@ -67,7 +67,7 @@ public class ShapeDraftman implements ShapeVisitor {
 		FontAttributes attfont = (FontAttributes)txt.getAttributes("font");
 		if (attfont==null) attfont= new FontAttributes();
 		g.setColor(attcolor.filledColor);
-		g.fillRect(txt.getBounds().x, txt.getBounds().y-txt.getBounds().height, txt.getBounds().width, txt.getBounds().height);
+		g.fillRect(txt.getBounds().x, txt.getBounds().y, txt.getBounds().width, txt.getBounds().height);
 		
 		g.setColor(attfont.fontColor);
 		g.setFont(attfont.font);
@@ -75,8 +75,8 @@ public class ShapeDraftman implements ShapeVisitor {
 		SelectionAttributes attriselect = (SelectionAttributes)txt.getAttributes("selection");
 		if (attriselect!=null && attriselect.isSelected()) {
 			g.setColor(Color.BLACK);
-			g.drawRect((int)txt.getLoc().getX()-DEFAULTSELECTIONSQUARE,(int)txt.getLoc().getY()-DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
-			g.drawRect((int)txt.getLoc().getX()-DEFAULTSELECTIONSQUARE-1,(int)txt.getLoc().getY()-DEFAULTSELECTIONSQUARE-1,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
+			g.drawRect(txt.getBounds().x-DEFAULTSELECTIONSQUARE,txt.getBounds().y-DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
+			g.drawRect(txt.getBounds().x + txt.getBounds().width-DEFAULTSELECTIONSQUARE-1,txt.getBounds().y + txt.getBounds().height-DEFAULTSELECTIONSQUARE-1,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
 		}
 	}
 	public void visitCollection(SCollection c) {
