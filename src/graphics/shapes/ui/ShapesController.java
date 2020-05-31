@@ -22,14 +22,36 @@ public class ShapesController extends Controller{
 		super(model);
 	}
 	
+	public boolean getTargetSCollection(int x, int y, SCollection c) {
+		for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
+			Shape s = i.next();
+			if (s instanceof SCollection) {
+				if (getTargetSCollection(x,y,(SCollection)s)) {
+					return true;
+				}
+			}
+			if (s.getBounds().contains(x,y)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public Shape getTarget(int x, int y) {
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
-			
-			if(s.getBounds().contains(x,y)) {
-
-				return s;
+			if (s instanceof SCollection) {
+				if (getTargetSCollection(x,y,(SCollection)s)){
+					return s;
+				}
 			}
+			else {
+				if(s.getBounds().contains(x,y)) {
+					System.out.println("test");
+					return s;
+				}
+			}
+			
 			
 		}
 		return null;

@@ -4,3 +4,5 @@ Ecrire du texte
 Sauvegarder les formes actuelles / charger
 Boutons de contrôle
 Gerer des Images
+CTRL+A : tout sélectionner
+CTRL+I : inverser la sélection
