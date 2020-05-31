@@ -52,7 +52,7 @@ public class ShapesController extends Controller{
 	}
 	
 	public void translateSelection(int x, int y) {
-		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+		for (Iterator<Shape> i = this.getSelected().iterator(); i.hasNext();) {
 			i.next().translate(x, y);
 		}
 		super.getView().repaint();
@@ -74,12 +74,13 @@ public class ShapesController extends Controller{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		super.mousePressed(e);
+		super.mouseClicked(e);
 		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
-			this.toggleSelectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
+			this.selectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
 		}
 		this.mouseLoc=e.getPoint();
 		this.getView().repaint();
+		
 
 	}
 	
@@ -93,7 +94,7 @@ public class ShapesController extends Controller{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		super.mouseClicked(e);
+		super.mousePressed(e);
 		this.mouseLoc=e.getPoint();
 	}
 
