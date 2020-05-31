@@ -23,32 +23,32 @@ public class ShapesController extends Controller{
 	}
 	
 	public Shape getTarget(int x, int y) {
-		
+		int te=0;
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
+			
+			System.out.println(te);
+			te++;
 			if(s.getBounds().contains(x,y)) {
+				System.out.println("test");
 				return s;
 			}
+			
 		}
 		return null;
 	}
 	
 	public void selectShape(Shape s) {
-		if(s.getAttributes("selection") != null) {
-			((SelectionAttributes) s.getAttributes("selection")).select();
-		}
-		else {
-			s.addAttributes(new SelectionAttributes());
-		}
+		((SelectionAttributes) s.getAttributes("selection")).select();
 	}
 	
+	public void unselectShape(Shape s) {
+		((SelectionAttributes) s.getAttributes("selection")).unselect();
+	}
+	
+	
 	public void toggleSelectShape(Shape s) {
-		if(s.getAttributes("selection") != null) {
-			((SelectionAttributes) s.getAttributes("selection")).toggleSelection();
-		}
-		else {
-			s.addAttributes(new SelectionAttributes());
-		}
+		((SelectionAttributes) s.getAttributes("selection")).toggleSelection();
 	}
 	
 	public void translateSelection(int x, int y) {
@@ -62,10 +62,8 @@ public class ShapesController extends Controller{
 		SCollection selected = new SCollection();
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
-			if(s.getAttributes("selection") != null) {
-				if(((SelectionAttributes) s.getAttributes("selection")).isSelected()) {
-					selected.add(s);
-				}
+			if(((SelectionAttributes) s.getAttributes("selection")).isSelected()) {
+				selected.add(s);
 			}
 			
 		}
@@ -77,6 +75,12 @@ public class ShapesController extends Controller{
 		super.mouseClicked(e);
 		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
 			this.selectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
+		}
+		else {
+			for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+				Shape s = i.next();
+				this.unselectShape(s);
+			}
 		}
 		this.mouseLoc=e.getPoint();
 		this.getView().repaint();

@@ -1,7 +1,7 @@
 package graphics.shapes.attributes;
 
 public class SelectionAttributes extends Attributes {
-	private boolean selected=true;
+	private boolean selected=false;
 	
 	public String getId() {
 		return "selection";
