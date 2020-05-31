@@ -74,21 +74,27 @@ public class ShapesController extends Controller{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		super.mousePressed(e);
 		if(this.whereIs(e.getX(), e.getY()) != null) {
 			this.toggleSelectShape(this.whereIs(e.getX(), e.getY()));
 		}
 		this.mouseLoc=e.getPoint();
+		this.getView().repaint();
+
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		super.mouseDragged(e);
 		getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
 		this.mouseLoc=e.getPoint();
 		System.out.println(e.getPoint().x-this.mouseLoc.x);
+		this.getView().repaint();
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		super.mouseClicked(e);
 		System.out.println("test");
 	}
 
