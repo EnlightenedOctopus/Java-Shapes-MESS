@@ -90,7 +90,6 @@ public class ShapesController extends Controller{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		super.mouseClicked(e);
 		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
 			if(!e.isShiftDown()) {
 				for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
@@ -113,7 +112,6 @@ public class ShapesController extends Controller{
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		super.mouseDragged(e);
 		getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
 		this.mouseLoc=e.getPoint();
 		this.getView().repaint();
@@ -121,7 +119,6 @@ public class ShapesController extends Controller{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		super.mousePressed(e);
 		this.mouseLoc=e.getPoint();
 	}
 
