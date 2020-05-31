@@ -39,8 +39,7 @@ public class SCircle extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(loc.x-radius,loc.y-radius,radius,radius);
 	}
 
 	public void accept(ShapeVisitor visitor) {

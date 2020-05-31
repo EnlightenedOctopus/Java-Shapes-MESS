@@ -8,10 +8,10 @@ import graphics.ui.Controller;
 import graphics.ui.View;
 
 public class ShapesView extends View {
-	private Controller controller;
 	
 	public ShapesView(Shape c) {
 		super(c);
+		this.defaultController(c);
 	}
 	
 	public void paintComponent(Graphics g) {

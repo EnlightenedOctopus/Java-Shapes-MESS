@@ -3,6 +3,8 @@ package graphics.shapes.attributes;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 
 public class FontAttributes extends Attributes{
 	@Override
@@ -24,6 +26,6 @@ public class FontAttributes extends Attributes{
 	}
 	
 	public Rectangle getBounds(String wtf) {
-		return null;
+		return (Rectangle)font.getStringBounds(wtf,new FontRenderContext(new AffineTransform(),true,true));
 	}
 }

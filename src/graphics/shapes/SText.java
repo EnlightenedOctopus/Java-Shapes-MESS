@@ -39,8 +39,7 @@ public class SText extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Rectangle(0,0,1,1);
 	}
 
 	@Override
