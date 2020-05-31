@@ -3,6 +3,8 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import graphics.shapes.attributes.FontAttributes;
+
 
 public class SText extends Shape{
 	private String text;
@@ -39,7 +41,8 @@ public class SText extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(0,0,1,1);
+		Rectangle tempo = new Rectangle(this.loc.x,this.loc.y,((FontAttributes)this.getAttributes("font")).getBounds(this.text).height,((FontAttributes)this.getAttributes("font")).getBounds(this.text).width);
+		return tempo;
 	}
 
 	@Override

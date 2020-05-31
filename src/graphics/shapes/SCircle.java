@@ -39,7 +39,7 @@ public class SCircle extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(loc.x-radius,loc.y-radius,radius,radius);
+		return new Rectangle(loc.x-radius,loc.y-radius,2*radius,2*radius);
 	}
 
 	public void accept(ShapeVisitor visitor) {
