@@ -1,6 +1,7 @@
 package graphics.shapes.ui;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
@@ -11,6 +12,11 @@ import graphics.ui.Controller;
 
 public class ShapesController extends Controller{
 	Point mouseLoc;
+    private static boolean shiftDown;
+    private char t;
+    private char p;
+    private char r;
+    private int id;
 	
 	public ShapesController(Object model) {
 		super(model);
@@ -80,7 +86,48 @@ public class ShapesController extends Controller{
 		this.mouseLoc=e.getPoint();
 		System.out.println(e.getPoint().x-this.mouseLoc.x);
 	}
-
 	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("test");
+	}
+
+    public void keyTyped(KeyEvent evt)
+    {
+        id = evt.getID();
+        if (id == KeyEvent.KEY_TYPED) {
+            t = evt.getKeyChar(); 
+        }
+    }
+
+    public void keyPressed(KeyEvent evt)
+    {
+        id = evt.getID();
+        if (id == KeyEvent.KEY_PRESSED) {
+            p = evt.getKeyChar(); 
+        }
+    }
+
+    public void keyReleased(KeyEvent evt)
+    {
+        id = evt.getID();
+        if (id == KeyEvent.KEY_RELEASED) {
+            r  = evt.getKeyChar(); 
+        }
+    }
+
+    public void shiftState(KeyEvent evt) {
+        int id;
+        id = evt.getKeyChar();
+        if (id == KeyEvent.VK_SHIFT) {
+            if (evt.getID() == KeyEvent.KEY_PRESSED) {
+                this.shiftDown = true;
+            }
+            else {
+                this.shiftDown = false;
+            }
+        }
+
+    }
 
 }
