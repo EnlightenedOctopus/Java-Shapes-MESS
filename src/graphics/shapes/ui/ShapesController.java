@@ -44,7 +44,7 @@ public class ShapesController extends Controller{
 	
 	public void toggleSelectShape(Shape s) {
 		if(s.getAttributes("selection") != null) {
-			((SelectionAttributes) s.getAttributes("selection")).toggleSelected();
+			((SelectionAttributes) s.getAttributes("selection")).toggleSelection();
 		}
 		else {
 			s.addAttributes(new SelectionAttributes());
