@@ -13,24 +13,21 @@ import graphics.ui.Controller;
 public class ShapesController extends Controller{
 	Point mouseLoc;
     private boolean shiftDown;
-    private char t;
-    private char p;
-    private char r;
-    private int id;
+    private char lastTyped;
+    private char lastPressed;
+    private char lastRealesed;
+
 	
 	public ShapesController(Object model) {
 		super(model);
 	}
 	
 	public Shape getTarget(int x, int y) {
-		int te=0;
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
 			
-			System.out.println(te);
-			te++;
 			if(s.getBounds().contains(x,y)) {
-				System.out.println("test");
+
 				return s;
 			}
 			
@@ -74,7 +71,12 @@ public class ShapesController extends Controller{
 	public void mouseClicked(MouseEvent e) {
 		super.mouseClicked(e);
 		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
-			this.selectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
+			if(!e.isShiftDown()) {
+				for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+					((SelectionAttributes) i.next().getAttributes("selection")).unselect();
+				}
+			}
+			this.toggleSelectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
 		}
 		else {
 			for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
@@ -104,32 +106,27 @@ public class ShapesController extends Controller{
 
     public void keyTyped(KeyEvent evt)
     {
-        id = evt.getID();
-        if (id == KeyEvent.KEY_TYPED) {
-            t = evt.getKeyChar(); 
+        if (evt.getID() == KeyEvent.KEY_TYPED) {
+            this.lastTyped = evt.getKeyChar(); 
         }
     }
 
     public void keyPressed(KeyEvent evt)
     {
-        id = evt.getID();
-        if (id == KeyEvent.KEY_PRESSED) {
-            p = evt.getKeyChar(); 
+        if (evt.getID() == KeyEvent.KEY_PRESSED) {
+            this.lastPressed = evt.getKeyChar(); 
         }
     }
 
     public void keyReleased(KeyEvent evt)
     {
-        id = evt.getID();
-        if (id == KeyEvent.KEY_RELEASED) {
-            r  = evt.getKeyChar(); 
+        if (evt.getID() == KeyEvent.KEY_RELEASED) {
+            this.lastRealesed  = evt.getKeyChar(); 
         }
     }
 
     public void shiftState(KeyEvent evt) {
-        int id;
-        id = evt.getKeyChar();
-        if (id == KeyEvent.VK_SHIFT) {
+        if (evt.getKeyChar() == KeyEvent.VK_SHIFT) {
             if (evt.getID() == KeyEvent.KEY_PRESSED) {
                 this.shiftDown = true;
             }
