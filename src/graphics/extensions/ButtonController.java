@@ -13,7 +13,6 @@ import graphics.shapes.Shape;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
-import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;
 
 public class ButtonController {
@@ -58,6 +57,21 @@ public class ButtonController {
 			mod.deleteShape(s);
 		}
 	}
+	/*
+	public Shape getoneshapeselected(SCollection c) {
+		for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
+			Shape s = i.next();
+			if(((SelectionAttributes) s.getAttributes("selection")).isSelected()) {
+				return (Shape)s;
+			}
+		}
+	}
+	*/
+	public void editColor(ShapesView sv) {
+		SCollection mod = (SCollection)sv.getModel();
+		//Shape s = getoneshapeselected(mod);
+		//new FenetreEditColor((ColorAttributes)s.getAttributes("color"));
+	}
 	
 	public ButtonController(MouseEvent e, ShapesView sv) {
 		if (e.getPoint().x>sv.getBounds().width-DEFAULTWIDTHBUTTON+12) {
@@ -73,6 +87,9 @@ public class ButtonController {
 				}
 				if (e.getPoint().y<4*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>4*DEFAULTWIDTHBUTTON) {
 					this.deleteSelected(sv);
+				}
+				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
+					this.editColor(sv);
 				}
 			}
 		}

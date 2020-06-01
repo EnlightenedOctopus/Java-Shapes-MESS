@@ -2,6 +2,7 @@ package graphics.shapes.ui;
 
 import java.awt.Graphics;
 
+import graphics.extensions.ButtonPanel;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import graphics.ui.Controller;
@@ -17,6 +18,9 @@ public class ShapesView extends View {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		new ShapeDraftman(g).visitCollection((SCollection)this.getModel());
+		//extension buttons
+		new ButtonPanel(g,this);
+		//JE SUIS UNE FOU
 	}
 	
 	@Override
