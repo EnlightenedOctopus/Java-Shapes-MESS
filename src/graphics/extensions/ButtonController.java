@@ -73,7 +73,13 @@ public class ButtonController {
 		SCollection mod = (SCollection)sv.getModel();
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
-			new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+			if (s.getAttributes("color")!=null) {
+				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+			}
+			else {
+				s.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.BLACK));
+				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+			}
 		}
 		else {
 			System.out.println("Il faut sélectionner un Shape.");
@@ -99,7 +105,7 @@ public class ButtonController {
 				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
 					this.editColor(sv);
 				}
-				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<6*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>6*DEFAULTWIDTHBUTTON) {
 					ShapesController c = (ShapesController)sv.getController();
 					if (c.textMod) {
 						c.textMod=false;
