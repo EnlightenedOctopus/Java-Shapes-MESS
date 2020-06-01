@@ -43,21 +43,22 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 			g.fillRoundRect(10+30*i, 50, 30, 30, 10, 10);
 			g.fillRoundRect(10+30*i, 130, 30, 30, 10, 10);
 		}
-		g.setColor(Color.GRAY);
-		g.fillRect(250, 20, 60, 20);
-		g.fillRect(250, 100, 60, 20);
+		g.setColor(Color.WHITE);
+		g.fillRoundRect(10+30*(listColor.size()), 50, 30, 30, 10, 10);
+		g.fillRoundRect(10+30*(listColor.size()), 130, 30, 30, 10, 10);
+		g.setColor(Color.RED);
+		g.drawLine(10+30*(listColor.size()), 50, 10+30*(listColor.size())+30, 80);
+		g.drawLine(10+30*(listColor.size()), 130, 10+30*(listColor.size())+30, 160);
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(200, 200, 60, 20);
 		g.setColor(Color.BLACK);
 		g.drawString("Filled Color :", 100, 30);
 		g.drawString("Stroked Color :", 100, 110);
-		g.drawString("Enable",252,33);
-		g.drawString("Enable",252,113);
 		g.drawString("EXIT",217,215);
 	}
 	
 	public int findColorButton(int x) {
-		for (int i=0;i<listColor.size();i++) {
+		for (int i=0;i<listColor.size()+1;i++) {
 			if (x<40+30*i && x>10+30*i) {
 				return i;
 			}
@@ -68,13 +69,24 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 	public void mousePressed(MouseEvent e){
 		if (e.getY()<80 && e.getY()>50) {
 			if (this.findColorButton((int)e.getX())!=listColor.size()+1) {
-				System.out.println(listColor.get(this.findColorButton((int)e.getX())));
-				att.filledColor=listColor.get(this.findColorButton((int)e.getX()));
+				if (this.findColorButton((int)e.getX())==listColor.size()) {
+					att.filled=false;
+				}
+				else {
+					att.filled=true;
+					att.filledColor=listColor.get(this.findColorButton((int)e.getX()));
+				}
 			}
 		}
 		if (e.getY()<160 && e.getY()>130) {
 			if (this.findColorButton((int)e.getX())!=listColor.size()+1) {
-				att.strokedColor=listColor.get(this.findColorButton((int)e.getX()));
+				if (this.findColorButton((int)e.getX())==listColor.size()) {
+					att.stroked=false;
+				}
+				else {
+					att.stroked=true;
+					att.strokedColor=listColor.get(this.findColorButton((int)e.getX()));
+				}
 			}
 		}
 		if (e.getX()>250 && e.getX()<310) {
