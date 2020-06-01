@@ -64,6 +64,8 @@ public class Editor extends JFrame
 		t.addAttributes(new SelectionAttributes());
 		this.model.add(t);
 		
+		
+		//EXTENSION IMAGES
 		SImage img = new SImage(new Point(10,10), "goodenough.gif");
 		img.addAttributes(new SelectionAttributes());
 		this.model.add(img);

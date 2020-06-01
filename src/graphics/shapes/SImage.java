@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-//Commit
-
 public class SImage extends Shape{
 	private BufferedImage image;
 	private Point loc;

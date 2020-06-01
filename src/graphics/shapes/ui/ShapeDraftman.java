@@ -104,7 +104,6 @@ public class ShapeDraftman implements ShapeVisitor {
 		}
 	}
 	
-	//Extension images
 	public void visitImage(SImage img) {
 		g.drawImage(img.getImage(), img.getLoc().x, img.getLoc().y, null);
 		SelectionAttributes attriselect = (SelectionAttributes)img.getAttributes("selection");
