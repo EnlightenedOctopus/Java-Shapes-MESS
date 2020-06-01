@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
+import graphics.extensions.ButtonController;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.SelectionAttributes;
@@ -90,6 +91,9 @@ public class ShapesController extends Controller{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		//extension buttons
+		new ButtonController(e,(ShapesView)this.getView());
+		//
 		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
 			if(!e.isShiftDown()) {
 				for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {

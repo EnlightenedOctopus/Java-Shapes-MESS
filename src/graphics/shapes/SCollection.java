@@ -44,6 +44,10 @@ public class SCollection extends Shape {
 	@Override
 	public void accept(ShapeVisitor visitor) {
 		visitor.visitCollection(this);
-		
 	}
+	//extension buttons
+	public void deleteShape(Object s) {
+		this.shapes.remove(s);
+	}
+	//
 }
