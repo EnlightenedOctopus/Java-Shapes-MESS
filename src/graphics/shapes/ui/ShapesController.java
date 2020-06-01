@@ -18,7 +18,8 @@ public class ShapesController extends Controller{
     private char lastTyped;
     private char lastPressed;
     private char lastRealesed;
-    public boolean textMod;
+    public boolean textMod=false;
+    public boolean colorMod=false;
 
 	
 	public ShapesController(Object model) {
@@ -115,19 +116,23 @@ public class ShapesController extends Controller{
 			}
 		}
 		this.getView().repaint();
-
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
-		this.mouseLoc=e.getPoint();
+		if (!this.colorMod) {
+			getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
+			this.mouseLoc=e.getPoint();
+		}
 		this.getView().repaint();
 	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		this.mouseLoc=e.getPoint();
+	}
+	public void mouseReleased(MouseEvent e) {
+		this.colorMod=false;
 	}
 
 	@Override

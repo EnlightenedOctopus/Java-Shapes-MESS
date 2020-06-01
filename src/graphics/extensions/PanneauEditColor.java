@@ -6,10 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.ui.ShapesController;
 
 public class PanneauEditColor extends JPanel implements MouseListener{
 	
@@ -89,29 +89,13 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 				}
 			}
 		}
-		if (e.getX()>250 && e.getX()<310) {
-			if (e.getY()>20 && e.getY()<40) {
-				if (att.filled==true) {
-					att.filled=false;
-				}
-				else {
-					att.filled=true;
-				}
-			}
-			if (e.getY()>100 && e.getY()<120) {
-				if (att.filled==true) {
-					att.filled=false;
-				}
-				else {
-					att.filled=true;
-				}
-			}
-		}
-		if (e.getX()>200 && e.getX()<260) {
+		if (e.getX()>200 && e.getX()<260) {	//Bouton EXIT
 			if (e.getY()>200 && e.getY()<220) {
+				//ShapesController c =(ShapesController)this.win.getSV().getController();
 				this.setEnabled(false);
 				this.win.getSV().repaint();
 				this.win.dispose();
+				//c.colorMod=false;
 			}
 		}
 	}

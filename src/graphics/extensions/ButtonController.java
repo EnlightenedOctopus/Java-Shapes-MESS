@@ -69,7 +69,11 @@ public class ButtonController {
 		return null;
 	}
 	
+	
+	
 	public void editColor(ShapesView sv) {
+		ShapesController c = (ShapesController)sv.getController();
+		c.colorMod=true;
 		SCollection mod = (SCollection)sv.getModel();
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
@@ -84,7 +88,6 @@ public class ButtonController {
 		else {
 			System.out.println("Il faut sélectionner un Shape.");
 		}
-		
 	}
 	
 	public ButtonController(MouseEvent e, ShapesView sv) {
