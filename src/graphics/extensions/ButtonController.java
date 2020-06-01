@@ -69,7 +69,26 @@ public class ButtonController {
 		return null;
 	}
 	
-	
+	public void colorshapesinSCollection(SCollection c,ColorAttributes attri) {
+		for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
+			Shape s = i.next();
+			if (s instanceof SCollection) {
+				this.colorshapesinSCollection((SCollection)s,attri);
+			}
+			else {
+				if (s.getAttributes("color")!=null) {
+					((ColorAttributes)s.getAttributes("color")).filled=attri.filled;
+					((ColorAttributes)s.getAttributes("color")).stroked=attri.stroked;
+					((ColorAttributes)s.getAttributes("color")).filledColor=attri.filledColor;
+					((ColorAttributes)s.getAttributes("color")).strokedColor=attri.strokedColor;
+				}
+				else {
+					s.addAttributes(attri);
+				}
+			}
+				
+		}
+	}
 	
 	public void editColor(ShapesView sv) {
 		ShapesController c = (ShapesController)sv.getController();
@@ -78,15 +97,15 @@ public class ButtonController {
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
 			if (s.getAttributes("color")!=null) {
-				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
 			}
 			else {
 				s.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.BLACK));
-				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
 			}
 		}
 		else {
-			System.out.println("Il faut sélectionner un Shape.");
+			System.out.println("Il faut sélectionner au moins un Shape.");
 		}
 	}
 	

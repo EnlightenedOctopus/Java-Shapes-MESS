@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import graphics.shapes.SCollection;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.ui.ShapesController;
 
@@ -16,8 +17,9 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 	ArrayList<Color> listColor=new ArrayList<Color>();
 	ColorAttributes att;
 	FenetreEditColor win;
+	ButtonController bc;
 	
-	public PanneauEditColor(ColorAttributes attri,FenetreEditColor jf){
+	public PanneauEditColor(ColorAttributes attri,FenetreEditColor jf,ButtonController bc){
 		listColor.add(Color.BLACK);
 		listColor.add(Color.BLUE);
 		listColor.add(Color.CYAN);
@@ -34,6 +36,7 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 		this.addMouseListener(this);
 		this.att=attri;
 		this.win=jf;
+		this.bc=bc;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -91,11 +94,12 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 		}
 		if (e.getX()>200 && e.getX()<260) {	//Bouton EXIT
 			if (e.getY()>200 && e.getY()<220) {
-				//ShapesController c =(ShapesController)this.win.getSV().getController();
+				ShapesController c =(ShapesController)this.win.getSV().getController();
+				SCollection select = c.getSelected();
+				bc.colorshapesinSCollection(select,this.att);
 				this.setEnabled(false);
 				this.win.getSV().repaint();
 				this.win.dispose();
-				//c.colorMod=false;
 			}
 		}
 	}

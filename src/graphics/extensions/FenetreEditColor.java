@@ -10,10 +10,10 @@ public class FenetreEditColor extends JFrame{
 	private ColorAttributes attri;
 	private ShapesView sv;
 	
-	public FenetreEditColor(ColorAttributes c, ShapesView sv) {
+	public FenetreEditColor(ColorAttributes c, ShapesView sv, ButtonController bc) {
 	    this.attri=c;
 	    this.sv=sv;
-	    this.pan=new PanneauEditColor(attri,this);
+	    this.pan=new PanneauEditColor(attri,this,bc);
 		this.setTitle("Edition de Couleur");
 	    this.setSize(500, 300);
 	    this.setLocationRelativeTo(null);
