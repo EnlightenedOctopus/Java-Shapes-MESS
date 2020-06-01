@@ -15,9 +15,9 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 	
 	ArrayList<Color> listColor=new ArrayList<Color>();
 	ColorAttributes att;
-	JFrame win;
+	FenetreEditColor win;
 	
-	public PanneauEditColor(ColorAttributes attri,JFrame jf){
+	public PanneauEditColor(ColorAttributes attri,FenetreEditColor jf){
 		listColor.add(Color.BLACK);
 		listColor.add(Color.BLUE);
 		listColor.add(Color.CYAN);
@@ -98,6 +98,7 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 		if (e.getX()>200 && e.getX()<260) {
 			if (e.getY()>200 && e.getY()<220) {
 				this.setEnabled(false);
+				this.win.getSV().repaint();
 				this.win.dispose();
 			}
 		}

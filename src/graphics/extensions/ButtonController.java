@@ -17,7 +17,7 @@ import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;
 
 public class ButtonController {
-	private int DEFAULTWIDTHBUTTON=40;
+	public int DEFAULTWIDTHBUTTON=40;
 	
 	public void newSCircle(ShapesView sv) {
 		SCollection mod = (SCollection)sv.getModel();
@@ -73,7 +73,7 @@ public class ButtonController {
 		SCollection mod = (SCollection)sv.getModel();
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
-			new FenetreEditColor((ColorAttributes)s.getAttributes("color"));
+			new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
 		}
 		else {
 			System.out.println("Il faut sélectionner un Shape.");

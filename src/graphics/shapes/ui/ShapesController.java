@@ -95,8 +95,8 @@ public class ShapesController extends Controller{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//extension buttons
-		new ButtonController(e,(ShapesView)this.getView());
-		if(e.getPoint().x < this.getView().getWidth()-40) {
+		ButtonController bc = new ButtonController(e,(ShapesView)this.getView());
+		if(e.getPoint().x < this.getView().getWidth()-bc.DEFAULTWIDTHBUTTON) {
 		
 			
 			if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
