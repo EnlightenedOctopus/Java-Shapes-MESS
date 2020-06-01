@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
+import graphics.shapes.SImage;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.Shape;
@@ -100,6 +101,16 @@ public class ShapeDraftman implements ShapeVisitor {
 		Iterator<Shape> i = c.iterator();
 		while (i.hasNext()) {
 			i.next().accept(this);
+		}
+	}
+	
+	public void visitImage(SImage img) {
+		g.drawImage(img.getImage(), img.getLoc().x, img.getLoc().y, null);
+		SelectionAttributes attriselect = (SelectionAttributes)img.getAttributes("selection");
+		if (attriselect!=null && attriselect.isSelected()) {
+			g.setColor(Color.BLACK);
+			g.drawRect(img.getBounds().x-DEFAULTSELECTIONSQUARE,img.getBounds().y-DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
+			g.drawRect(img.getBounds().x + img.getBounds().width-DEFAULTSELECTIONSQUARE-1,img.getBounds().y + img.getBounds().height-DEFAULTSELECTIONSQUARE-1,2*DEFAULTSELECTIONSQUARE,2*DEFAULTSELECTIONSQUARE);
 		}
 	}
 }

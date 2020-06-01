@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
+import graphics.shapes.SImage;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.attributes.ColorAttributes;
@@ -62,6 +63,10 @@ public class Editor extends JFrame
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
 		this.model.add(t);
+		
+		SImage img = new SImage(new Point(10,10), "goodenough.gif");
+		img.addAttributes(new SelectionAttributes());
+		this.model.add(img);
 		
 		SCollection sc = new SCollection();
 		sc.addAttributes(new SelectionAttributes());
