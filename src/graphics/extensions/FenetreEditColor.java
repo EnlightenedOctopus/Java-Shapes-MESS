@@ -12,7 +12,7 @@ public class FenetreEditColor extends JFrame{
 	
 	public FenetreEditColor(ColorAttributes c) {
 	    this.attri=c;
-	    this.pan=new PanneauEditColor(attri);
+	    this.pan=new PanneauEditColor(attri,this);
 		this.setTitle("Edition de Couleur");
 	    this.setSize(500, 300);
 	    this.setLocationRelativeTo(null);
