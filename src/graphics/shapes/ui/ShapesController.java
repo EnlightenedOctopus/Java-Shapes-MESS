@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import graphics.extensions.ButtonController;
 import graphics.shapes.SCollection;
+import graphics.shapes.SText;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
@@ -95,24 +96,25 @@ public class ShapesController extends Controller{
 	public void mouseClicked(MouseEvent e) {
 		//extension buttons
 		new ButtonController(e,(ShapesView)this.getView());
-		//
-		if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
-			if(!e.isShiftDown()) {
+		if(e.getPoint().x < this.getView().getWidth()-40) {
+		
+			
+			if(this.getTarget(e.getPoint().x, e.getPoint().y) != null) {
+				if(!e.isShiftDown()) {
+					for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+						((SelectionAttributes) i.next().getAttributes("selection")).unselect();
+					}
+				}
+				this.toggleSelectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
+			}
+			else {
 				for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
-					((SelectionAttributes) i.next().getAttributes("selection")).unselect();
+					Shape s = i.next();
+					this.unselectShape(s);
 				}
 			}
-			this.toggleSelectShape(this.getTarget(e.getPoint().x, e.getPoint().y));
 		}
-		else {
-			for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
-				Shape s = i.next();
-				this.unselectShape(s);
-			}
-		}
-		this.mouseLoc=e.getPoint();
 		this.getView().repaint();
-		
 
 	}
 	
@@ -128,11 +130,22 @@ public class ShapesController extends Controller{
 		this.mouseLoc=e.getPoint();
 	}
 
+	@Override
     public void keyTyped(KeyEvent evt)
     {
         if (evt.getID() == KeyEvent.KEY_TYPED) {
             this.lastTyped = evt.getKeyChar(); 
         }
+        if(this.textMod) {
+        	for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+        		Shape txt = i.next();
+        		if(txt instanceof SText) {
+        			((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
+        		}
+        	}
+        	this.getView().repaint();
+        }
+        
     }
 
     public void keyPressed(KeyEvent evt)
@@ -149,16 +162,5 @@ public class ShapesController extends Controller{
         }
     }
 
-    public void shiftState(KeyEvent evt) {
-        if (evt.getKeyChar() == KeyEvent.VK_SHIFT) {
-            if (evt.getID() == KeyEvent.KEY_PRESSED) {
-                this.shiftDown = true;
-            }
-            else {
-                this.shiftDown = false;
-            }
-        }
-
-    }
 
 }
