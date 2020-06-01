@@ -39,22 +39,23 @@ public class ShapesController extends Controller{
 	}
 	
 	public Shape getTarget(int x, int y) {
+		Shape selected = null;
 		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 			Shape s = i.next();
 			if (s instanceof SCollection) {
 				if (getTargetSCollection(x,y,(SCollection)s)){
-					return s;
+					selected = s;
 				}
 			}
 			else {
 				if(s.getBounds().contains(x,y)) {
-					return s;
+					selected = s;
 				}
 			}
 			
 			
 		}
-		return null;
+		return selected;
 	}
 	
 	public void selectShape(Shape s) {
