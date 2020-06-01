@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import graphics.shapes.attributes.ColorAttributes;
 
 public class FenetreEditColor extends JFrame{
-	private PanneauEditColor pan = new PanneauEditColor();
+	private PanneauEditColor pan;
 	private ColorAttributes attri;
 	
 	public FenetreEditColor(ColorAttributes c) {
+	    this.attri=c;
+	    this.pan=new PanneauEditColor(attri);
 		this.setTitle("Edition de Couleur");
 	    this.setSize(500, 300);
 	    this.setLocationRelativeTo(null);
@@ -18,6 +20,5 @@ public class FenetreEditColor extends JFrame{
 	    this.setResizable(false);
 	    this.setContentPane(pan);
 	    this.setVisible(true);
-	    this.attri=c;
 	}
 }

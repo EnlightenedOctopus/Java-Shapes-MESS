@@ -13,10 +13,11 @@ import graphics.shapes.Shape;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
+import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;
 
 public class ButtonController {
-	private int DEFAULTWIDTHBUTTON=50;
+	private int DEFAULTWIDTHBUTTON=40;
 	
 	public void newSCircle(ShapesView sv) {
 		SCollection mod = (SCollection)sv.getModel();
@@ -57,25 +58,32 @@ public class ButtonController {
 			mod.deleteShape(s);
 		}
 	}
-	/*
+	
 	public Shape getoneshapeselected(SCollection c) {
 		for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
 			Shape s = i.next();
 			if(((SelectionAttributes) s.getAttributes("selection")).isSelected()) {
-				return (Shape)s;
+				return s;
 			}
 		}
+		return null;
 	}
-	*/
+	
 	public void editColor(ShapesView sv) {
 		SCollection mod = (SCollection)sv.getModel();
-		//Shape s = getoneshapeselected(mod);
-		//new FenetreEditColor((ColorAttributes)s.getAttributes("color"));
+		Shape s = getoneshapeselected(mod);
+		if (s!=null) {
+			new FenetreEditColor((ColorAttributes)s.getAttributes("color"));
+		}
+		else {
+			System.out.println("Il faut sélectionner un Shape.");
+		}
+		
 	}
 	
 	public ButtonController(MouseEvent e, ShapesView sv) {
-		if (e.getPoint().x>sv.getBounds().width-DEFAULTWIDTHBUTTON+12) {
-			if (e.getPoint().x<sv.getBounds().width-DEFAULTWIDTHBUTTON+37) {
+		if (e.getPoint().x>sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12) {
+			if (e.getPoint().x<sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)+13) {
 				if (e.getPoint().y<DEFAULTWIDTHBUTTON+25 && e.getPoint().y>DEFAULTWIDTHBUTTON) {
 					this.newSCircle(sv);
 				}
@@ -90,6 +98,15 @@ public class ButtonController {
 				}
 				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
 					this.editColor(sv);
+				}
+				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
+					ShapesController c = (ShapesController)sv.getController();
+					if (c.textMod) {
+						c.textMod=false;
+					}
+					else {
+						c.textMod=true;
+					}
 				}
 			}
 		}

@@ -20,7 +20,7 @@ public class ShapesView extends View {
 		new ShapeDraftman(g).visitCollection((SCollection)this.getModel());
 		//extension buttons
 		new ButtonPanel(g,this);
-		//JE SUIS UNE FOU
+		//
 	}
 	
 	@Override

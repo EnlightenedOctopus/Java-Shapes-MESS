@@ -17,6 +17,7 @@ public class ShapesController extends Controller{
     private char lastTyped;
     private char lastPressed;
     private char lastRealesed;
+    public boolean textMod;
 
 	
 	public ShapesController(Object model) {

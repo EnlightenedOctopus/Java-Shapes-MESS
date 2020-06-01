@@ -8,9 +8,14 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import graphics.shapes.attributes.ColorAttributes;
+
 public class PanneauEditColor extends JPanel implements MouseListener{
+	
 	ArrayList<Color> listColor=new ArrayList<Color>();
-	public PanneauEditColor(){
+	ColorAttributes att;
+	
+	public PanneauEditColor(ColorAttributes attri){
 		listColor.add(Color.BLACK);
 		listColor.add(Color.BLUE);
 		listColor.add(Color.CYAN);
@@ -25,6 +30,7 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 		listColor.add(Color.WHITE);
 		listColor.add(Color.YELLOW);
 		this.addMouseListener(this);
+		this.att=attri;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -35,8 +41,27 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 			g.fillRoundRect(10+30*i, 130, 30, 30, 10, 10);
 		}
 	}
+	
+	public int findColorButton(int x) {
+		for (int i=0;i<listColor.size();i++) {
+			if (x<40+30*i && x>10+30*i) {
+				return i;
+			}
+		}
+		return listColor.size()+1;
+	}
+	
 	public void mousePressed(MouseEvent e){
-		
+		if (e.getY()<80 && e.getY()>50) {
+			if (this.findColorButton((int)e.getX())!=listColor.size()+1) {
+				att.filledColor=listColor.get(this.findColorButton((int)e.getX()));
+			}
+		}
+		if (e.getY()<160 && e.getY()>130) {
+			if (this.findColorButton((int)e.getX())!=listColor.size()+1) {
+				att.strokedColor=listColor.get(this.findColorButton((int)e.getX()));
+			}
+		}
 	}
 
 	public void mouseReleased(MouseEvent e)
