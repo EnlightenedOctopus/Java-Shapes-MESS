@@ -23,6 +23,10 @@ public class ShapesView extends View {
 		//
 	}
 	
+	public boolean isFocusTraversable() {
+		return true;
+	}
+	
 	@Override
 	public Controller defaultController(Object model) {
 		return new ShapesController((SCollection) model);
