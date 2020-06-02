@@ -159,16 +159,20 @@ public class ShapesController extends Controller{
     public void keyPressed(KeyEvent evt){
     	//CTRL + A to select ALL
     	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_A) {
-    		
     		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 				((SelectionAttributes) i.next().getAttributes("selection")).select();
 			}
     	}
     	//CTRL + I to invertSelection
-    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_I) {
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_I) { 
     		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
 				((SelectionAttributes) i.next().getAttributes("selection")).toggleSelection();
 			}
+    	}
+    	
+    	//Ctrl+E to modify Text
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_E) {
+    		this.textMod=!this.textMod;
     	}
     	this.getView().repaint();
     }
