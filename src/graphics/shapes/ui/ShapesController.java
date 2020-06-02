@@ -14,10 +14,6 @@ import graphics.ui.Controller;
 
 public class ShapesController extends Controller{
 	Point mouseLoc;
-    private boolean shiftDown;
-    private char lastTyped;
-    private char lastPressed;
-    private char lastRealesed;
     public boolean textMod=false;
     public boolean colorMod=false;
 
@@ -139,11 +135,9 @@ public class ShapesController extends Controller{
 	@Override
     public void keyTyped(KeyEvent evt)
     {
-        if (evt.getID() == KeyEvent.KEY_TYPED) {
-            this.lastTyped = evt.getKeyChar(); 
-        }
+ 
         if(this.textMod) {
-        	for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+        	for (Iterator<Shape> i = ((SCollection) this.getSelected()).iterator(); i.hasNext();) {
         		Shape txt = i.next();
         		if(txt instanceof SText) {
         			if((int)evt.getKeyChar()==8) {
@@ -161,11 +155,24 @@ public class ShapesController extends Controller{
     }
 
     public void keyPressed(KeyEvent evt){
-
+    	//CTRL + A to select ALL
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_A) {
+    		
+    		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+				((SelectionAttributes) i.next().getAttributes("selection")).select();
+			}
+    	}
+    	//CTRL + I to invertSelection
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_I) {
+    		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+				((SelectionAttributes) i.next().getAttributes("selection")).toggleSelection();
+			}
+    	}
+    	this.getView().repaint();
     }
 
     public void keyReleased(KeyEvent evt){
-
+    	
     }
 
 
