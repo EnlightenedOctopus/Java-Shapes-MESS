@@ -32,7 +32,6 @@ public class WindowNewShape extends JFrame{
 	    f2.setPreferredSize(new Dimension(100,30));
 	    f2.setBounds(5, 75, 170, 30);
 	    f3.setPreferredSize(new Dimension(100,30));
-	    f3.setBounds(5, 40, 170, 30);
 	    if (choice==0) {
 	    	pan.add(f1);
 	    }
@@ -41,6 +40,11 @@ public class WindowNewShape extends JFrame{
 	    	pan.add(f2);
 	    }
 	    if (choice==2) {
+	    	f3.setBounds(5, 40, 170, 30);
+	    	pan.add(f3);
+	    }
+	    if (choice==3) {
+	    	f3.setBounds(5, 60, 170, 30);
 	    	pan.add(f3);
 	    }
 	    this.setContentPane(pan);

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
+import graphics.shapes.SImage;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.Shape;
@@ -47,6 +48,10 @@ public class PanelNewShape extends JPanel implements MouseListener{
 		if (win.choice==2) {
 			g.drawString("Entrer texte", 10, 20);
 		}
+		if (win.choice==3) {
+			g.drawString("Mettre l'image dans img", 10, 20);
+			g.drawString("Entrer nom.extension :", 10, 40);
+		}
 		if (this.badEntry) {
 			g.setColor(Color.RED);
 			g.drawString("Mauvaise entrée", 10, 40);
@@ -70,7 +75,12 @@ public class PanelNewShape extends JPanel implements MouseListener{
 			}
 		}
 		if (win.choice==2) {
-			if (this.win.getf1().getText()!=null) {
+			if (this.win.getf3().getText()!=null) {
+				return true;
+			}
+		}
+		if (win.choice==3) {
+			if (this.win.getf3().getText()!=null) {
 				return true;
 			}
 		}
@@ -88,6 +98,9 @@ public class PanelNewShape extends JPanel implements MouseListener{
 		if (win.choice==2) {
 			s = new SText(new Point(30,30),this.win.getf3().getText());
 			s.addAttributes(new FontAttributes());
+		}
+		if (win.choice==3) {
+			s = new SImage(new Point(30,30),this.win.getf3().getText());
 		}
 		s.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.BLACK));
 		s.addAttributes(new SelectionAttributes());
