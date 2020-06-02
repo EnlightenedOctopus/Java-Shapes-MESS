@@ -3,12 +3,16 @@ package graphics.shapes.ui;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import graphics.extensions.ButtonController;
+import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
+import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.Shape;
+import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 
@@ -16,7 +20,7 @@ public class ShapesController extends Controller{
 	Point mouseLoc;
     public boolean textMod=false;
     public boolean windowOpen=false;
-
+    public SCollection copiedShapes;
 	
 	public ShapesController(Object model) {
 		super(model);
@@ -174,6 +178,16 @@ public class ShapesController extends Controller{
     	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_E) {
     		this.textMod=!this.textMod;
     	}
+    	
+    	//Ctrl + C to copy selected objetcs
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_C) {
+			this.copy();
+		}
+    	
+    	//Ctrl + V to paste selected objects
+		if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_V) {
+			this.paste();
+		}
     	this.getView().repaint();
     }
 
@@ -182,5 +196,24 @@ public class ShapesController extends Controller{
     }
     
     
+    public void copy() {
+    	this.copiedShapes = getSelected().copy();
+    }
 
-}
+	public void paste() {
+		SCollection model = (SCollection) this.getModel();
+		if (this.copiedShapes != null) {
+			for (Iterator<Shape> i = this.copiedShapes.iterator(); i.hasNext();) {
+				model.add(i.next());
+			}
+			
+			getView().repaint();
+		}
+	}
+		
+		
+	}
+
+	
+
+

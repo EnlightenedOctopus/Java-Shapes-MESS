@@ -18,5 +18,9 @@ public class ColorAttributes extends Attributes{
 		this.filledColor=fc;
 		this.strokedColor=sc;
 	}
+	public ColorAttributes copy() {
+		ColorAttributes ca = new ColorAttributes(this.filled, this.stroked, this.filledColor, this.strokedColor);
+		return ca;
+	}
 	
 }

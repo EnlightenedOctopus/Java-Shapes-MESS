@@ -3,6 +3,8 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import graphics.shapes.attributes.SelectionAttributes;
+
 public class SCircle extends Shape{
 	private int radius;
 	private Point loc;
@@ -45,6 +47,15 @@ public class SCircle extends Shape{
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
 		visitor.visitCircle(this);
+	}
+
+
+	@Override
+	public SCircle copy() {
+		SCircle circle = new SCircle(this.loc.getLocation(), this.radius);
+		circle.addAttributes(this.getAttributes("color").copy());
+		circle.addAttributes(new SelectionAttributes());
+		return circle;
 	}
 
 }

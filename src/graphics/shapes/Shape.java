@@ -22,4 +22,5 @@ abstract public class Shape {
 	abstract public void translate(int x, int y);
 	abstract public Rectangle getBounds();
 	abstract public void accept(ShapeVisitor visitor);
+	abstract public Shape copy();
 }

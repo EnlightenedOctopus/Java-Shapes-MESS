@@ -50,4 +50,13 @@ public class SCollection extends Shape {
 		this.shapes.remove(s);
 	}
 	//
+	@Override
+	public SCollection copy() {
+		SCollection colec=new SCollection();
+		for(Iterator<Shape> i = this.iterator(); i.hasNext();){
+			colec.add(i.next().copy());
+		}
+		colec.addAttributes(new SelectionAttributes());
+		return colec;
+	}
 }

@@ -18,5 +18,9 @@ public class SelectionAttributes extends Attributes {
 	public void toggleSelection() {
 		this.selected= !this.selected;
 	}
+	@Override
+	public SelectionAttributes copy() {
+		return null;
+	}
 
 }

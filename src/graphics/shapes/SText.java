@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import graphics.shapes.attributes.FontAttributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 
 public class SText extends Shape{
@@ -49,5 +50,14 @@ public class SText extends Shape{
 	public void accept(ShapeVisitor visitor) {
 		// TODO Auto-generated method stub
 		visitor.visitText(this);
+	}
+
+	@Override
+	public SText copy() {
+		SText text = new SText(this.loc.getLocation(), this.text);
+		text.addAttributes(this.getAttributes("color").copy());
+		text.addAttributes(this.getAttributes("font").copy());
+		text.addAttributes(new SelectionAttributes());
+		return text;
 	}
 }

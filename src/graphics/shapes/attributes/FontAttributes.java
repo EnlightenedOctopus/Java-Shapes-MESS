@@ -32,4 +32,10 @@ public class FontAttributes extends Attributes{
 		Rectangle r2 = new Rectangle((int)r.getX(),(int)r.getY(),(int)r.getWidth(),(int)r.getHeight());
 		return r2;
 	}
+
+	@Override
+	public FontAttributes copy() {
+		FontAttributes fa = new FontAttributes(this.font, this.fontColor);
+		return fa;
+	}
 }

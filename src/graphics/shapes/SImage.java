@@ -8,14 +8,18 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import graphics.shapes.attributes.SelectionAttributes;
+
 
 public class SImage extends Shape{
 	private BufferedImage image;
 	private Point loc;
 	private String IMG_FOLDER="img/";
+	private String imagename;
 	
 	public SImage(Point loc, String image) {
 		this.loc=loc;
+		this.imagename = image;
 		try{
 		    this.image = ImageIO.read(new File(IMG_FOLDER+image));
 		}
@@ -59,6 +63,13 @@ public class SImage extends Shape{
 	public void accept(ShapeVisitor visitor) {
 		visitor.visitImage(this);
 		
+	}
+
+	@Override
+	public SImage copy() {
+		SImage img = new SImage(this.loc.getLocation(), this.imagename);
+		img.addAttributes(new SelectionAttributes());
+		return img;
 	}
 	
 }
