@@ -204,7 +204,7 @@ public class ShapesController extends Controller{
 		SCollection model = (SCollection) this.getModel();
 		if (this.copiedShapes != null) {
 			for (Iterator<Shape> i = this.copiedShapes.iterator(); i.hasNext();) {
-				model.add(i.next());
+				model.add(i.next().copy());
 			}
 			
 			getView().repaint();
