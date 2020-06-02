@@ -141,7 +141,9 @@ public class ShapesController extends Controller{
         		Shape txt = i.next();
         		if(txt instanceof SText) {
         			if((int)evt.getKeyChar()==8) {
-        				((SText)txt).setText(((SText)txt).getText().substring(0, ((SText)txt).getText().length()-1));
+        				if(((SText)txt).getText().length() != 0) {
+        					((SText)txt).setText(((SText)txt).getText().substring(0, ((SText)txt).getText().length()-1));
+        				}
         			}
         			else {
         				((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
