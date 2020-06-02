@@ -48,7 +48,7 @@ public class SRectangle extends Shape{
 
 	@Override
 	public SRectangle copy() {
-		SRectangle rect = new SRectangle(this.getLoc().getLocation(), this.rect.height, this.rect.width);
+		SRectangle rect = new SRectangle(this.getLoc().getLocation(), this.rect.width, this.rect.height);
 		rect.addAttributes(this.getAttributes("color").copy());
 		rect.addAttributes(new SelectionAttributes());
 		return rect;
