@@ -6,18 +6,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import graphics.shapes.SCollection;
 import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.ui.ShapesController;
 
-public class PanneauEditColor extends JPanel implements MouseListener{
+public class PanelEditColor extends JPanel implements MouseListener{
 	
 	ArrayList<Color> listColor=new ArrayList<Color>();
 	ColorAttributes att;
-	FenetreEditColor win;
+	WindowEditColor win;
+	ButtonController bc;
 	
-	public PanneauEditColor(ColorAttributes attri,FenetreEditColor jf){
+	public PanelEditColor(ColorAttributes attri,WindowEditColor jf,ButtonController bc){
 		listColor.add(Color.BLACK);
 		listColor.add(Color.BLUE);
 		listColor.add(Color.CYAN);
@@ -34,6 +36,7 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 		this.addMouseListener(this);
 		this.att=attri;
 		this.win=jf;
+		this.bc=bc;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -89,26 +92,11 @@ public class PanneauEditColor extends JPanel implements MouseListener{
 				}
 			}
 		}
-		if (e.getX()>250 && e.getX()<310) {
-			if (e.getY()>20 && e.getY()<40) {
-				if (att.filled==true) {
-					att.filled=false;
-				}
-				else {
-					att.filled=true;
-				}
-			}
-			if (e.getY()>100 && e.getY()<120) {
-				if (att.filled==true) {
-					att.filled=false;
-				}
-				else {
-					att.filled=true;
-				}
-			}
-		}
-		if (e.getX()>200 && e.getX()<260) {
+		if (e.getX()>200 && e.getX()<260) {	//Bouton EXIT
 			if (e.getY()>200 && e.getY()<220) {
+				ShapesController c =(ShapesController)this.win.getSV().getController();
+				SCollection select = c.getSelected();
+				bc.colorshapesinSCollection(select,this.att);
 				this.setEnabled(false);
 				this.win.getSV().repaint();
 				this.win.dispose();

@@ -69,38 +69,68 @@ public class ButtonController {
 		return null;
 	}
 	
+	public void colorshapesinSCollection(SCollection c,ColorAttributes attri) {
+		for (Iterator<Shape> i = c.iterator(); i.hasNext();) {
+			Shape s = i.next();
+			if (s instanceof SCollection) {
+				this.colorshapesinSCollection((SCollection)s,attri);
+			}
+			else {
+				if (s.getAttributes("color")!=null) {
+					((ColorAttributes)s.getAttributes("color")).filled=attri.filled;
+					((ColorAttributes)s.getAttributes("color")).stroked=attri.stroked;
+					((ColorAttributes)s.getAttributes("color")).filledColor=attri.filledColor;
+					((ColorAttributes)s.getAttributes("color")).strokedColor=attri.strokedColor;
+				}
+				else {
+					s.addAttributes(attri);
+				}
+			}
+				
+		}
+	}
+	
 	public void editColor(ShapesView sv) {
 		SCollection mod = (SCollection)sv.getModel();
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
-			new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv);
+			if (s.getAttributes("color")!=null) {
+				new WindowEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
+			}
+			else {
+				s.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.BLACK));
+				new WindowEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
+			}
 		}
 		else {
-			System.out.println("Il faut sélectionner un Shape.");
+			System.out.println("Il faut sélectionner au moins un Shape.");
 		}
-		
 	}
 	
 	public ButtonController(MouseEvent e, ShapesView sv) {
+		ShapesController c = (ShapesController)sv.getController();
 		if (e.getPoint().x>sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12) {
 			if (e.getPoint().x<sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)+13) {
 				if (e.getPoint().y<DEFAULTWIDTHBUTTON+25 && e.getPoint().y>DEFAULTWIDTHBUTTON) {
-					this.newSCircle(sv);
+					new WindowNewShape(sv,0);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<2*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>2*DEFAULTWIDTHBUTTON) {
-					this.newSRect(sv);
+					new WindowNewShape(sv,1);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<3*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>3*DEFAULTWIDTHBUTTON) {
-					this.newSText(sv);
+					new WindowNewShape(sv,2);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<4*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>4*DEFAULTWIDTHBUTTON) {
 					this.deleteSelected(sv);
 				}
 				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
 					this.editColor(sv);
+					c.windowOpen=true;
 				}
-				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
-					ShapesController c = (ShapesController)sv.getController();
+				if (e.getPoint().y<6*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>6*DEFAULTWIDTHBUTTON) {
 					if (c.textMod) {
 						c.textMod=false;
 					}

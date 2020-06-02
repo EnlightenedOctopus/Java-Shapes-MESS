@@ -5,15 +5,15 @@ import javax.swing.JFrame;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.ui.ShapesView;
 
-public class FenetreEditColor extends JFrame{
-	private PanneauEditColor pan;
+public class WindowEditColor extends JFrame{
+	private PanelEditColor pan;
 	private ColorAttributes attri;
 	private ShapesView sv;
 	
-	public FenetreEditColor(ColorAttributes c, ShapesView sv) {
+	public WindowEditColor(ColorAttributes c, ShapesView sv, ButtonController bc) {
 	    this.attri=c;
 	    this.sv=sv;
-	    this.pan=new PanneauEditColor(attri,this);
+	    this.pan=new PanelEditColor(attri,this,bc);
 		this.setTitle("Edition de Couleur");
 	    this.setSize(500, 300);
 	    this.setLocationRelativeTo(null);

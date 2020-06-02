@@ -68,8 +68,9 @@ public class ShapeDraftman implements ShapeVisitor {
 		FontAttributes attfont = (FontAttributes)txt.getAttributes("font");
 		if (attfont==null) attfont= new FontAttributes();
 		g.setColor(attcolor.filledColor);
-		g.fillRect(txt.getBounds().x, txt.getBounds().y, txt.getBounds().width, txt.getBounds().height);
-		
+		if (attcolor.filled) {
+			g.fillRect(txt.getBounds().x, txt.getBounds().y, txt.getBounds().width, txt.getBounds().height);
+		}
 		g.setColor(attcolor.strokedColor);
 		g.setFont(attfont.font);
 		g.drawString(txt.getText(), txt.getLoc().x, txt.getLoc().y);

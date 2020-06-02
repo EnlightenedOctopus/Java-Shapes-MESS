@@ -14,11 +14,8 @@ import graphics.ui.Controller;
 
 public class ShapesController extends Controller{
 	Point mouseLoc;
-    private boolean shiftDown;
-    private char lastTyped;
-    private char lastPressed;
-    private char lastRealesed;
-    public boolean textMod;
+    public boolean textMod=false;
+    public boolean windowOpen=false;
 
 	
 	public ShapesController(Object model) {
@@ -96,6 +93,7 @@ public class ShapesController extends Controller{
 	public void mouseClicked(MouseEvent e) {
 		//extension buttons
 		ButtonController bc = new ButtonController(e,(ShapesView)this.getView());
+		//end
 		if(e.getPoint().x < this.getView().getWidth()-bc.DEFAULTWIDTHBUTTON) {
 		
 			
@@ -115,13 +113,14 @@ public class ShapesController extends Controller{
 			}
 		}
 		this.getView().repaint();
-
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
-		this.mouseLoc=e.getPoint();
+		if (!this.windowOpen) {
+			getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
+			this.mouseLoc=e.getPoint();
+		}
 		this.getView().repaint();
 	}
 	
@@ -129,18 +128,27 @@ public class ShapesController extends Controller{
 	public void mousePressed(MouseEvent e) {
 		this.mouseLoc=e.getPoint();
 	}
+	public void mouseReleased(MouseEvent e) {
+		this.windowOpen=false;
+	}
 
 	@Override
     public void keyTyped(KeyEvent evt)
     {
-        if (evt.getID() == KeyEvent.KEY_TYPED) {
-            this.lastTyped = evt.getKeyChar(); 
-        }
+ 
         if(this.textMod) {
-        	for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+        	for (Iterator<Shape> i = ((SCollection) this.getSelected()).iterator(); i.hasNext();) {
         		Shape txt = i.next();
         		if(txt instanceof SText) {
-        			((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
+        			if((int)evt.getKeyChar()==8) {
+        				if(((SText)txt).getText().length() != 0) {
+        					((SText)txt).setText(((SText)txt).getText().substring(0, ((SText)txt).getText().length()-1));
+        				}
+        			}
+        			else {
+        				((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
+        			}
+        		
         		}
         	}
         	this.getView().repaint();
@@ -148,18 +156,29 @@ public class ShapesController extends Controller{
         
     }
 
-    public void keyPressed(KeyEvent evt)
-    {
-        if (evt.getID() == KeyEvent.KEY_PRESSED) {
-            this.lastPressed = evt.getKeyChar(); 
-        }
+    public void keyPressed(KeyEvent evt){
+    	//CTRL + A to select ALL
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_A) {
+    		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+				((SelectionAttributes) i.next().getAttributes("selection")).select();
+			}
+    	}
+    	//CTRL + I to invertSelection
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_I) { 
+    		for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
+				((SelectionAttributes) i.next().getAttributes("selection")).toggleSelection();
+			}
+    	}
+    	
+    	//Ctrl+E to modify Text
+    	if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_E) {
+    		this.textMod=!this.textMod;
+    	}
+    	this.getView().repaint();
     }
 
-    public void keyReleased(KeyEvent evt)
-    {
-        if (evt.getID() == KeyEvent.KEY_RELEASED) {
-            this.lastRealesed  = evt.getKeyChar(); 
-        }
+    public void keyReleased(KeyEvent evt){
+    	
     }
     
     
