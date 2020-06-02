@@ -19,31 +19,6 @@ import graphics.shapes.ui.ShapesView;
 public class ButtonController {
 	public int DEFAULTWIDTHBUTTON=40;
 	
-	public void newSCircle(ShapesView sv) {
-		SCollection mod = (SCollection)sv.getModel();
-		SCircle c = new SCircle(new Point(150,150),20);
-		c.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.DARK_GRAY));
-		c.addAttributes(new SelectionAttributes());
-		mod.add(c);
-	}
-	
-	public void newSRect(ShapesView sv) {
-		SCollection mod = (SCollection)sv.getModel();
-		SRectangle r = new SRectangle(new Point(150,150),20,20);
-		r.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.DARK_GRAY));
-		r.addAttributes(new SelectionAttributes());
-		mod.add(r);
-	}
-	
-	public void newSText(ShapesView sv) {
-		SCollection mod = (SCollection)sv.getModel();
-		SText t = new SText(new Point(150,150),"Ajout");
-		t.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.DARK_GRAY));
-		t.addAttributes(new FontAttributes());
-		t.addAttributes(new SelectionAttributes());
-		mod.add(t);
-	}
-	
 	public void deleteSelected(ShapesView sv) {
 		SCollection mod = (SCollection)sv.getModel();
 		SCollection del = new SCollection();
@@ -111,26 +86,30 @@ public class ButtonController {
 		ShapesController c = (ShapesController)sv.getController();
 		if (e.getPoint().x>sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12) {
 			if (e.getPoint().x<sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)+13) {
-				if (e.getPoint().y<DEFAULTWIDTHBUTTON+25 && e.getPoint().y>DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<DEFAULTWIDTHBUTTON+5 && e.getPoint().y>DEFAULTWIDTHBUTTON-20) {
 					new WindowNewShape(sv,0);
 					c.windowOpen=true;
 				}
-				if (e.getPoint().y<2*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>2*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<2*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>2*DEFAULTWIDTHBUTTON-20) {
 					new WindowNewShape(sv,1);
 					c.windowOpen=true;
 				}
-				if (e.getPoint().y<3*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>3*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<3*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>3*DEFAULTWIDTHBUTTON-20) {
 					new WindowNewShape(sv,2);
 					c.windowOpen=true;
 				}
-				if (e.getPoint().y<4*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>4*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<4*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>4*DEFAULTWIDTHBUTTON-20) {
+					new WindowNewShape(sv,3);
+					c.windowOpen=true;
+				}
+				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>5*DEFAULTWIDTHBUTTON-20) {
 					this.deleteSelected(sv);
 				}
-				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<6*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>6*DEFAULTWIDTHBUTTON-20) {
 					this.editColor(sv);
 					c.windowOpen=true;
 				}
-				if (e.getPoint().y<6*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>6*DEFAULTWIDTHBUTTON) {
+				if (e.getPoint().y<7*DEFAULTWIDTHBUTTON+5 && e.getPoint().y>7*DEFAULTWIDTHBUTTON-20) {
 					if (c.textMod) {
 						c.textMod=false;
 					}
