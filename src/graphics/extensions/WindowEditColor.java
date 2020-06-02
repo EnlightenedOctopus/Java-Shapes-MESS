@@ -6,6 +6,7 @@ import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.ui.ShapesView;
 
 public class WindowEditColor extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private PanelEditColor pan;
 	private ColorAttributes attri;
 	private ShapesView sv;

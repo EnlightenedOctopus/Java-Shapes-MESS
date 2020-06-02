@@ -13,7 +13,7 @@ import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.ui.ShapesController;
 
 public class PanelEditColor extends JPanel implements MouseListener{
-	
+	private static final long serialVersionUID = 1L;
 	ArrayList<Color> listColor=new ArrayList<Color>();
 	ColorAttributes att;
 	WindowEditColor win;

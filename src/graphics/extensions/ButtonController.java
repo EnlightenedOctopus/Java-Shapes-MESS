@@ -1,17 +1,12 @@
 package graphics.extensions;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
-import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.SText;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;

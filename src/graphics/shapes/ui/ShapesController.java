@@ -3,16 +3,12 @@ package graphics.shapes.ui;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import graphics.extensions.ButtonController;
-import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
 import graphics.shapes.Shape;
-import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
 

@@ -19,6 +19,7 @@ import graphics.shapes.attributes.SelectionAttributes;
 
 public class Editor extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	ShapesView sview;
 	SCollection model;
 	

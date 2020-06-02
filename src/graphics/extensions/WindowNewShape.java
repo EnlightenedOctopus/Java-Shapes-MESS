@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import graphics.shapes.ui.ShapesView;
 
 public class WindowNewShape extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private PanelNewShape pan;
 	private ShapesView sv;
 	public int choice;

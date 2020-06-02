@@ -19,11 +19,8 @@ import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 public class PanelNewShape extends JPanel implements MouseListener{
+	private static final long serialVersionUID = 1L;
 	private WindowNewShape win;
-	private int rx;
-	private int ry;
-	private int rad;
-	private String txt;
 	private boolean badEntry=false;
 	
 	public PanelNewShape(WindowNewShape w) {

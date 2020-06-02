@@ -9,7 +9,7 @@ import graphics.ui.Controller;
 import graphics.ui.View;
 
 public class ShapesView extends View {
-	
+	private static final long serialVersionUID = 1L;
 	public ShapesView(Shape c) {
 		super(c);
 		this.defaultController(c);

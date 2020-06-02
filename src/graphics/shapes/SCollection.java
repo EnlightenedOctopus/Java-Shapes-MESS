@@ -3,7 +3,6 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 import graphics.shapes.attributes.SelectionAttributes;
