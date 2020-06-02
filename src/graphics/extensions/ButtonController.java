@@ -97,11 +97,11 @@ public class ButtonController {
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
 			if (s.getAttributes("color")!=null) {
-				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
+				new WindowEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
 			}
 			else {
 				s.addAttributes(new ColorAttributes(true,true,Color.WHITE,Color.BLACK));
-				new FenetreEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
+				new WindowEditColor((ColorAttributes)s.getAttributes("color"),sv,this);
 			}
 		}
 		else {

@@ -12,14 +12,14 @@ import graphics.shapes.SCollection;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.ui.ShapesController;
 
-public class PanneauEditColor extends JPanel implements MouseListener{
+public class PanelEditColor extends JPanel implements MouseListener{
 	
 	ArrayList<Color> listColor=new ArrayList<Color>();
 	ColorAttributes att;
-	FenetreEditColor win;
+	WindowEditColor win;
 	ButtonController bc;
 	
-	public PanneauEditColor(ColorAttributes attri,FenetreEditColor jf,ButtonController bc){
+	public PanelEditColor(ColorAttributes attri,WindowEditColor jf,ButtonController bc){
 		listColor.add(Color.BLACK);
 		listColor.add(Color.BLUE);
 		listColor.add(Color.CYAN);

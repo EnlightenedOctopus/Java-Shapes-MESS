@@ -8,12 +8,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;
 
 public class ButtonPanel{
 	private Graphics g;
 	public int DEFAULTWIDTHBUTTON=40;
-	private BufferedImage icon1,icon2,icon3,icon4,icon5,icon6;
+	private BufferedImage icon1,icon2,icon3,icon4,icon5,icon6,icon7;
 	
 	public ButtonPanel(Graphics g, ShapesView sv) {
 		this.g=g;
@@ -26,6 +27,7 @@ public class ButtonPanel{
 			icon4 = ImageIO.read(new File("data/deleteAll.jpg"));
 			icon5 = ImageIO.read(new File("data/editcolor.jpg"));
 			icon6 = ImageIO.read(new File("data/editText.jpg"));
+			icon7 = ImageIO.read(new File("data/editTextEnabled.jpg"));
 		}
 		catch (IOException e) {
 			System.out.println("Current working directory : " + System.getProperty("user.dir"));
@@ -37,6 +39,12 @@ public class ButtonPanel{
 		this.g.drawImage(this.icon3, (int)this.g.getClipBounds().getWidth()-(DEFAULTWIDTHBUTTON/2)-12,3*DEFAULTWIDTHBUTTON, sv);
 		this.g.drawImage(this.icon4, (int)sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12,4*DEFAULTWIDTHBUTTON, sv);
 		this.g.drawImage(this.icon5, (int)sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12,5*DEFAULTWIDTHBUTTON, sv);
-		this.g.drawImage(this.icon6, (int)sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12,6*DEFAULTWIDTHBUTTON, sv);
+		ShapesController c = (ShapesController)sv.getController();
+		if (c.textMod) {
+			this.g.drawImage(this.icon7, (int)sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12,6*DEFAULTWIDTHBUTTON, sv);
+		}
+		else {
+			this.g.drawImage(this.icon6, (int)sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12,6*DEFAULTWIDTHBUTTON, sv);
+		}
 	}
 }
