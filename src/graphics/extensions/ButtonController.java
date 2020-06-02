@@ -91,8 +91,6 @@ public class ButtonController {
 	}
 	
 	public void editColor(ShapesView sv) {
-		ShapesController c = (ShapesController)sv.getController();
-		c.colorMod=true;
 		SCollection mod = (SCollection)sv.getModel();
 		Shape s = getoneshapeselected(mod);
 		if (s!=null) {
@@ -110,25 +108,29 @@ public class ButtonController {
 	}
 	
 	public ButtonController(MouseEvent e, ShapesView sv) {
+		ShapesController c = (ShapesController)sv.getController();
 		if (e.getPoint().x>sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)-12) {
 			if (e.getPoint().x<sv.getBounds().width-(DEFAULTWIDTHBUTTON/2)+13) {
 				if (e.getPoint().y<DEFAULTWIDTHBUTTON+25 && e.getPoint().y>DEFAULTWIDTHBUTTON) {
-					this.newSCircle(sv);
+					new WindowNewShape(sv,0);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<2*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>2*DEFAULTWIDTHBUTTON) {
-					this.newSRect(sv);
+					new WindowNewShape(sv,1);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<3*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>3*DEFAULTWIDTHBUTTON) {
-					this.newSText(sv);
+					new WindowNewShape(sv,2);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<4*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>4*DEFAULTWIDTHBUTTON) {
 					this.deleteSelected(sv);
 				}
 				if (e.getPoint().y<5*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>5*DEFAULTWIDTHBUTTON) {
 					this.editColor(sv);
+					c.windowOpen=true;
 				}
 				if (e.getPoint().y<6*DEFAULTWIDTHBUTTON+25 && e.getPoint().y>6*DEFAULTWIDTHBUTTON) {
-					ShapesController c = (ShapesController)sv.getController();
 					if (c.textMod) {
 						c.textMod=false;
 					}

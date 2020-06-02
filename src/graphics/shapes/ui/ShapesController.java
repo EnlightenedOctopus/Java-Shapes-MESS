@@ -15,7 +15,7 @@ import graphics.ui.Controller;
 public class ShapesController extends Controller{
 	Point mouseLoc;
     public boolean textMod=false;
-    public boolean colorMod=false;
+    public boolean windowOpen=false;
 
 	
 	public ShapesController(Object model) {
@@ -117,7 +117,7 @@ public class ShapesController extends Controller{
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if (!this.colorMod) {
+		if (!this.windowOpen) {
 			getSelected().translate(e.getPoint().x-this.mouseLoc.x, e.getPoint().y-this.mouseLoc.y);
 			this.mouseLoc=e.getPoint();
 		}
@@ -129,7 +129,7 @@ public class ShapesController extends Controller{
 		this.mouseLoc=e.getPoint();
 	}
 	public void mouseReleased(MouseEvent e) {
-		this.colorMod=false;
+		this.windowOpen=false;
 	}
 
 	@Override
