@@ -146,7 +146,13 @@ public class ShapesController extends Controller{
         	for (Iterator<Shape> i = ((SCollection) this.getModel()).iterator(); i.hasNext();) {
         		Shape txt = i.next();
         		if(txt instanceof SText) {
-        			((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
+        			if((int)evt.getKeyChar()==8) {
+        				((SText)txt).setText(((SText)txt).getText().substring(0, ((SText)txt).getText().length()-1));
+        			}
+        			else {
+        				((SText)txt).setText(((SText)txt).getText()+evt.getKeyChar());
+        			}
+        		
         		}
         	}
         	this.getView().repaint();
@@ -154,18 +160,12 @@ public class ShapesController extends Controller{
         
     }
 
-    public void keyPressed(KeyEvent evt)
-    {
-        if (evt.getID() == KeyEvent.KEY_PRESSED) {
-            this.lastPressed = evt.getKeyChar(); 
-        }
+    public void keyPressed(KeyEvent evt){
+
     }
 
-    public void keyReleased(KeyEvent evt)
-    {
-        if (evt.getID() == KeyEvent.KEY_RELEASED) {
-            this.lastRealesed  = evt.getKeyChar(); 
-        }
+    public void keyReleased(KeyEvent evt){
+
     }
 
 
